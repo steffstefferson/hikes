@@ -1,0 +1,62 @@
+5seengotthard.gpx
+5seengotthard_fixed.gpx
+5seenwanderung.gpx
+alpstein tag1.gpx
+ardez motta naluns.gpx
+augstmatthorn.gpx
+bedrettohöhenwanderung.gpx
+blenio cadlimo.gpx
+bluemlisalphütte.gpx
+brienzerrothorn brünig.gpx
+cadlimo lukmanier.gpx
+cadlimo ritom.gpx
+cadlimo vrin.gpx
+cavaglia bernina pass.gpx
+chamanna coaz.gpx
+charmey epagny.gpx
+ebenalp schwägalp.gpx
+fuorcla da glims.gpx
+gastlosen.gpx
+Gauligletscher.gpx
+Gelmersee.gpx
+glecksteinhütte.gpx
+gotthardcadlimo.gpx
+göscheneralpsee.gpx
+hinderburgseeli.gpx
+hoher kasten bollenwees.gpx
+iffigenalp lac de tseuzier.gpx
+jöriseen.gpx
+lago del zött.gpx
+lai blau.gpx
+lai caralin.gpx
+lauenesee iffigenalp.gpx
+Lauteraarhütte.gpx
+leutschenachhütte.gpx
+limmerensee.gpx
+macun seeenplatte.gpx
+moiry.gpx
+moteratsch gletscher.gpx
+muragl alp languard.gpx
+murgsee.gpx
+niderhorn beatenberg.gpx
+Oberaarsee.gpx
+oberalp cadlimo.gpx
+Robiei Seen.gpx
+routes.json
+routes.txt
+schinigiplatte first.gpx
+schwarzsee jaun.gpx
+schächentalerhöhenweg.gpx
+schöllenenschlucht.gpx
+Steingletsch.gpx
+säntis schwägalp.gpx
+tour du grand chavalard.gpx
+tremorgio.gpx
+trient.gpx
+Triftbrücke.gpx
+tschierva sac.gpx
+Val minger.gpx
+val trupchun.gpx
+verbierlacduvaux.gpx
+wesen quinten.gpx
+wildhuus säntis.gpx
