@@ -48,7 +48,7 @@
         try{
                 fetch('routes/routes_sample.txt')
                 .then(response => response.text())
-                .then(res => res.split('\r\n')
+                .then(res => res.split(/\r?\n/)
                 .forEach(fileName => {
                     console.log(fileName)
                     addToMap('routes/'+fileName);
