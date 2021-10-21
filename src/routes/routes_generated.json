@@ -1,0 +1,187 @@
+﻿{
+    "routes":  [
+                   {
+                       "Name":  "5seengotthard.gpx"
+                   },
+                   {
+                       "Name":  "5seenwanderung.gpx"
+                   },
+                   {
+                       "Name":  "alpstein tag1.gpx"
+                   },
+                   {
+                       "Name":  "ardez motta naluns.gpx"
+                   },
+                   {
+                       "Name":  "augstmatthorn.gpx"
+                   },
+                   {
+                       "Name":  "bedrettohöhenwanderung.gpx"
+                   },
+                   {
+                       "Name":  "blenio cadlimo.gpx"
+                   },
+                   {
+                       "Name":  "bluemlisalphütte.gpx"
+                   },
+                   {
+                       "Name":  "brienzerrothorn brünig.gpx"
+                   },
+                   {
+                       "Name":  "cadlimo lukmanier.gpx"
+                   },
+                   {
+                       "Name":  "cadlimo ritom.gpx"
+                   },
+                   {
+                       "Name":  "cadlimo vrin.gpx"
+                   },
+                   {
+                       "Name":  "cavaglia bernina pass.gpx"
+                   },
+                   {
+                       "Name":  "chamanna coaz.gpx"
+                   },
+                   {
+                       "Name":  "charmey epagny.gpx"
+                   },
+                   {
+                       "Name":  "ebenalp schwägalp.gpx"
+                   },
+                   {
+                       "Name":  "fuorcla da glims.gpx"
+                   },
+                   {
+                       "Name":  "gastlosen.gpx"
+                   },
+                   {
+                       "Name":  "Gauligletscher.gpx"
+                   },
+                   {
+                       "Name":  "Gelmersee.gpx"
+                   },
+                   {
+                       "Name":  "glecksteinhütte.gpx"
+                   },
+                   {
+                       "Name":  "gotthardcadlimo.gpx"
+                   },
+                   {
+                       "Name":  "göscheneralpsee.gpx"
+                   },
+                   {
+                       "Name":  "hinderburgseeli.gpx"
+                   },
+                   {
+                       "Name":  "hoher kasten bollenwees.gpx"
+                   },
+                   {
+                       "Name":  "iffigenalp lac de tseuzier.gpx"
+                   },
+                   {
+                       "Name":  "jöriseen.gpx"
+                   },
+                   {
+                       "Name":  "lago del zött.gpx"
+                   },
+                   {
+                       "Name":  "lai blau.gpx"
+                   },
+                   {
+                       "Name":  "lai caralin.gpx"
+                   },
+                   {
+                       "Name":  "lauenesee iffigenalp.gpx"
+                   },
+                   {
+                       "Name":  "Lauteraarhütte.gpx"
+                   },
+                   {
+                       "Name":  "leutschenachhütte.gpx"
+                   },
+                   {
+                       "Name":  "limmerensee.gpx"
+                   },
+                   {
+                       "Name":  "macun seeenplatte.gpx"
+                   },
+                   {
+                       "Name":  "moiry.gpx"
+                   },
+                   {
+                       "Name":  "moteratsch gletscher.gpx"
+                   },
+                   {
+                       "Name":  "muragl alp languard.gpx"
+                   },
+                   {
+                       "Name":  "murgsee.gpx"
+                   },
+                   {
+                       "Name":  "niderhorn beatenberg.gpx"
+                   },
+                   {
+                       "Name":  "Oberaarsee.gpx"
+                   },
+                   {
+                       "Name":  "oberalp cadlimo.gpx"
+                   },
+                   {
+                       "Name":  "Robiei Seen.gpx"
+                   },
+                   {
+                       "Name":  "routes_generated.json"
+                   },
+                   {
+                       "Name":  "routes_generated_sample.json"
+                   },
+                   {
+                       "Name":  "schinigiplatte first.gpx"
+                   },
+                   {
+                       "Name":  "schwarzsee jaun.gpx"
+                   },
+                   {
+                       "Name":  "schächentalerhöhenweg.gpx"
+                   },
+                   {
+                       "Name":  "schöllenenschlucht.gpx"
+                   },
+                   {
+                       "Name":  "Steingletsch.gpx"
+                   },
+                   {
+                       "Name":  "säntis schwägalp.gpx"
+                   },
+                   {
+                       "Name":  "tour du grand chavalard.gpx"
+                   },
+                   {
+                       "Name":  "tremorgio.gpx"
+                   },
+                   {
+                       "Name":  "trient.gpx"
+                   },
+                   {
+                       "Name":  "Triftbrücke.gpx"
+                   },
+                   {
+                       "Name":  "tschierva sac.gpx"
+                   },
+                   {
+                       "Name":  "Val minger.gpx"
+                   },
+                   {
+                       "Name":  "val trupchun.gpx"
+                   },
+                   {
+                       "Name":  "verbierlacduvaux.gpx"
+                   },
+                   {
+                       "Name":  "wesen quinten.gpx"
+                   },
+                   {
+                       "Name":  "wildhuus säntis.gpx"
+                   }
+               ]
+}
