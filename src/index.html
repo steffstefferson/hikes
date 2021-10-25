@@ -6,27 +6,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css">
-    <style>
-      .icon {
-        max-width: 70%;
-        max-height: 70%;
-        margin: 4px;
-      }
-      .tourpopup h1{
-        font-size: 18px;
-      }
-      .tourpopup {
-        display: flex;
-        flex-direction: column;
-        align-content: center;
-        justify-content: space-evenly;
-        align-items: center;
-        margin: 10px;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="map" style="width: 100vw; height: 100vh;"></div>
+    <div id="map"></div>
+
+    <div class="layer_select">
+        <label class="hamburger_menu" for="hamburgerCheck">🍔
+        </label>
+            <input type="checkbox" id="hamburgerCheck">
+            <ul>
+                <li><a id="osm" href="javascript:changeToOpenStreetMap()">Open Street Map</a></li>
+                <li></li><a id="swisstopo" href="javascript:changeToSwissTopo()">Swiss Topo</a></li>
+            </ul>
+
+      
+    </label>
+
+    </div>
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
 <script src="gpx.js"></script>
