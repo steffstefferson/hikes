@@ -590,6 +590,11 @@ L.GPX = L.FeatureGroup.extend({
             name,
             el[i]
           );
+          this.fire("skippoint", {
+            point: null,
+            point_type: "waypoint",
+            element: el[i],
+          });
           continue;
         }
 
