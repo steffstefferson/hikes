@@ -19,9 +19,10 @@
         </label>
             <input type="checkbox" id="hamburgerCheck">
             <ul>
-                <li><a id="osm" href="javascript:changeToOpenStreetMap()">Open Street Map</a></li>
-                <li></li><a id="swisstopo" href="javascript:changeToSwissTopo()">Swiss Topo</a></li>
-            </ul>
+                <li><a id="osm" href="#">Street Map</a></li>
+                <li></li><a id="swisstopo" href="#">Swiss Topo</a></li>
+                <li><a id="reset" href="#">Reset</a></li>
+        </ul>
 
       
     </label>
@@ -34,12 +35,18 @@
 <script src="leaflet.filelayer.js"></script>
 <script type="module" src="index.js"></script>
 <script type="module">
-import {initMap,initRoutes} from './index.js';
+import {initMap,initRoutes,installServiceWorker,changeToSwissTopo,changeToOpenStreetMap,kickServiceWorker} from './index.js';
 
 window.addEventListener("load", function () {
   initMap();
   initRoutes();
 });
+installServiceWorker();
+
+document.getElementById("reset").addEventListener("click", kickServiceWorker, false);
+document.getElementById("swisstopo").addEventListener("click", changeToSwissTopo, false);
+document.getElementById("osm").addEventListener("click", changeToOpenStreetMap, false);
+
 
 </script>
 

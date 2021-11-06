@@ -115,14 +115,14 @@ function setMapLayer() {
   }
 }
 
-function changeToOpenStreetMap() {
+export function changeToOpenStreetMap() {
   var osm = L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
     attribution: "Map data &copy; 2021 OpenStreetMap contributors",
   });
   addLayer(osm, "OpenStreetMap");
 }
 
-function changeToSwissTopo() {
+export function changeToSwissTopo() {
   var swissTopo = L.tileLayer(
     "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg",
     {
@@ -130,6 +130,28 @@ function changeToSwissTopo() {
     }
   );
   addLayer(swissTopo, "SwissTopo");
+}
+
+export function installServiceWorker() {
+  if ("serviceWorker" in navigator) {
+    navigator.serviceWorker
+      .register("service-worker.js", { scope: "" })
+      .then((reg) => {
+        console.log("Registration succeeded. Scope is " + reg.scope);
+      })
+      .catch((error) => {
+        console.log("Registration failed with " + error);
+      });
+  }
+}
+
+export function kickServiceWorker() {
+  navigator.serviceWorker.getRegistrations().then(function (registrations) {
+    for (let registration of registrations) {
+      registration.unregister();
+      console.log("kicked sw");
+    }
+  });
 }
 
 function addLayer(layer, layerName) {
