@@ -12,3 +12,23 @@ self.addEventListener("install", (event) => {
     })
   );
 });
+
+self.addEventListener("fetch", function (event) {
+  if (!event.request.url.endsWith(".gpx")) {
+    event.respondWith(fetch(event.request));
+  } else {
+    event.respondWith(
+      caches.open("v1").then(function (cache) {
+        return cache.match(event.request).then(function (response) {
+          return (
+            response ||
+            fetch(event.request).then(function (response) {
+              cache.put(event.request, response.clone());
+              return response;
+            })
+          );
+        });
+      })
+    );
+  }
+});
