@@ -14,11 +14,13 @@ self.addEventListener("install", (event) => {
 });
 
 self.addEventListener("fetch", function (event) {
-  if (!event.request.url.endsWith(".gpx")) {
+  var isGpxRoute = event.request.url.endsWith(".gpx");
+  if (!isGpxRoute) {
     event.respondWith(fetch(event.request));
   } else {
+    let cacheName = isGpxRoute ? "v1-gpx" : "v1";
     event.respondWith(
-      caches.open("v1").then(function (cache) {
+      caches.open(cacheName).then(function (cache) {
         return cache.match(event.request).then(function (response) {
           return (
             response ||

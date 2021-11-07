@@ -151,6 +151,13 @@ export function kickServiceWorker() {
       registration.unregister();
       console.log("kicked sw");
     }
+    const keys = await caches.keys();
+    return keys.map(async (cache) => {
+      if (cache == "v1") {
+        console.log("Service Worker: Removing old cache: " + cache);
+        return await caches.delete(cache);
+      }
+    });
   });
 }
 
