@@ -145,18 +145,19 @@ export function installServiceWorker() {
   }
 }
 
-export function kickServiceWorker() {
+export async function kickServiceWorker() {
   navigator.serviceWorker.getRegistrations().then(function (registrations) {
     for (let registration of registrations) {
       registration.unregister();
       console.log("kicked sw");
     }
-    const keys = await caches.keys();
-    return keys.map(async (cache) => {
-      if (cache == "v1") {
-        console.log("Service Worker: Removing old cache: " + cache);
-        return await caches.delete(cache);
-      }
+    caches.keys().then((keyList) => {
+      return keyList.map(async (cache) => {
+        if (cache == "v1") {
+          console.log("Service Worker: Removing old cache: " + cache);
+          return await caches.delete(cache);
+        }
+      });
     });
   });
 }
