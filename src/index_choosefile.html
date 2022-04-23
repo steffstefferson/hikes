@@ -1,69 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <title>Leaflet Filelayer </title>
+    <title>My Hikes </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.2.0/normalize.min.css">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css">
-    <style>
-      .icon {
-        max-width: 70%;
-        max-height: 70%;
-        margin: 4px;
-      }
-    </style>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="manifest" href="manifest.json" />
+    <link rel="icon" href="icons/favicon.ico" sizes="any">
+    <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 </head>
 <body>
-    <div id="map" style="width: 100vw; height: 100vh;"></div>
+    <div id="map"></div>
+
+    <div class="layer_select">
+        <label class="hamburger_menu" for="hamburgerCheck">🍔
+        </label>
+            <input type="checkbox" id="hamburgerCheck">
+            <ul>
+                <li><a id="osm" href="#">Street Map</a></li>
+                <li></li><a id="swisstopo" href="#">Swiss Topo</a></li>
+                <li><a id="reset" href="#">Reset</a></li>
+                <li><a id="clearroutes" href="#">Clear Routes</a></li>
+        </ul>
+
+      
+    </label>
+
+    </div>
 </body>
-<script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
+<script src="gpx.js"></script>
 <script src="https://unpkg.com/togeojson@0.14.2"></script>
 <script src="leaflet.filelayer.js"></script>
-<script>
-  (function (window) {
-    'use strict';
+<script type="module" src="index.js"></script>
+<script type="module">
+import {addLoadFunctionality,initMap,clearRoutes,installServiceWorker,changeToSwissTopo,changeToOpenStreetMap,kickServiceWorker} from './index.js';
 
-    function initMap() {
-        var control;
-        var L = window.L;
-        var osm = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-            attribution: 'Map data &copy; 2013 OpenStreetMap contributors'
-        });
-        var map = L.map('map', {
-            center: [0, 0],
-            zoom: 2
-        }).addLayer(osm);
-        var style = {
-            color: 'red',
-            opacity: 1.0,
-            fillOpacity: 1.0,
-            weight: 2,
-            clickable: false
-        };
-        L.Control.FileLayerLoad.LABEL = '<img class="icon" src="folder.svg" alt="file icon"/>';
-        control = L.Control.fileLayerLoad({
-            fitBounds: true,
-            layerOptions: {
-                style: style,
-                pointToLayer: function (data, latlng) {
-                    return L.circleMarker(
-                        latlng,
-                        { style: style }
-                    );
-                }
-            }
-        });
-        control.addTo(map);
-        control.loader.on('data:loaded', function (e) {
-            var layer = e.layer;
-            console.log(layer);
-        });
-    }
+window.addEventListener("load", function () {
+  initMap();
+  addLoadFunctionality();
+});
+installServiceWorker();
 
-    window.addEventListener('load', function () {
-        initMap();
-    });
-}(window));
+document.getElementById("clearroutes").addEventListener("click", clearRoutes, false);
+document.getElementById("reset").addEventListener("click", kickServiceWorker, false);
+document.getElementById("swisstopo").addEventListener("click", changeToSwissTopo, false);
+document.getElementById("osm").addEventListener("click", changeToOpenStreetMap, false);
+
+
 </script>
+
+
 </html>

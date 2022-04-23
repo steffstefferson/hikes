@@ -8,10 +8,89 @@ export function initMap() {
   var L = window.L;
 
   map = L.map("map", {
-    center: [0, 0],
-    zoom: 2,
+    center: [47.17599, 7.33801],
+    zoom: 12,
   });
   setMapLayer();
+}
+export function addLoadFunctionality() {
+  addRouteIcon();
+  loadTracksFromLocalStorage();
+}
+
+function addRouteIcon() {
+  console.log("add route icon");
+  var style = {
+    color: "red",
+    opacity: 1.0,
+    fillOpacity: 1.0,
+    weight: 2,
+    clickable: false,
+  };
+  L.Control.FileLayerLoad.LABEL =
+    '<img class="icon" src="folder.svg" alt="file icon"/>';
+  let control = L.Control.fileLayerLoad({
+    fitBounds: true,
+    layerOptions: {
+      style: style,
+      pointToLayer: function (data, latlng) {
+        return L.circleMarker(latlng, { style: style });
+      },
+    },
+  });
+  control.addTo(map);
+  control.loader.on("data:loading", function (e) {
+    addFileToLocalStorage(e);
+  });
+}
+
+function loadTracksFromLocalStorage() {
+  var allTracks = localStorage.getItem("tracks");
+  if (allTracks == null) return;
+
+  JSON.parse(allTracks).tracks.forEach((trackMetaData) => {
+    addTrackToMap(trackMetaData);
+  });
+}
+
+export function clearRoutes() {
+  var allTracks = localStorage.getItem("tracks");
+  if (allTracks == null) return;
+
+  JSON.parse(allTracks).tracks.forEach((trackMetaData) => {
+    localStorage.removeItem(trackMetaData.trackId);
+  });
+  localStorage.removeItem("tracks");
+}
+
+function addTrackToMap(trackMetaData) {
+  console.log("load track from localStorage" + trackMetaData.trackId);
+  var fileContent = localStorage.getItem(trackMetaData.trackId);
+  if (fileContent != null) addToMap(fileContent);
+}
+
+function addFileToLocalStorage(file) {
+  let date = new Date().toISOString();
+
+  var trackId = "track-" + +new Date();
+
+  let trackMetaData = {
+    trackId,
+    date,
+    ext: file.format,
+    name: file.filename,
+  };
+
+  localStorage.setItem(trackId, file.content);
+
+  var allTracks = JSON.parse(localStorage.getItem("tracks"));
+  if (allTracks == null) {
+    allTracks = { tracks: [] };
+    localStorage.setItem("tracks", JSON.stringify(allTracks));
+  }
+  allTracks.tracks.push(trackMetaData);
+  localStorage.setItem("tracks", JSON.stringify(allTracks));
+  console.log("Track with Id=" + trackId + " added to storage");
 }
 
 export function initRoutes() {
@@ -45,6 +124,20 @@ export function initRoutes() {
 }
 
 function addToMap(gpxFileName) {
+  let defaultPolyLineOptions = {
+    color: "red",
+    opacity: 0.75,
+    weight: 3,
+    lineCap: "round",
+  };
+
+  let hoverPolyLineOptions = {
+    color: "green",
+    opacity: 1,
+    weight: 6,
+    lineCap: "round",
+  };
+
   new L.GPX(gpxFileName, {
     async: true,
     marker_options: {
@@ -55,6 +148,7 @@ function addToMap(gpxFileName) {
         "": null,
       },
     },
+    polyline_options: defaultPolyLineOptions,
   })
     .on("loaded", function (e) {
       e.target.bindTooltip(getHtmlInfoElement(e.target._info));
@@ -70,6 +164,13 @@ function addToMap(gpxFileName) {
       );
       l.sourceTarget._info.estimatedHikingTimeInHours =
         parseInt(totalHikingTime) + "h " + minutes + "min";
+    })
+    .on("mouseover", function (ev) {
+      ev.layer.setStyle(hoverPolyLineOptions);
+      ev.layer.bringToFront();
+    })
+    .on("mouseout", function (ev) {
+      ev.layer.setStyle(defaultPolyLineOptions);
     })
     .on("addpoint", enrichWithSwissTopoInfo)
     .on("skippoint", enrichWithSwissTopoInfo)
@@ -88,18 +189,18 @@ function getHtmlInfoElement(tourInfo) {
   var template = `<div class="tourpopup">
     <h1>${tourInfo.name}</h1>
     <div>Up: ${Math.round(
-      tourInfo.swissTopoInfo.ascent || tourInfo.elevation.gain
+      tourInfo.swissTopoInfo?.ascent || tourInfo.elevation.gain
     )} m</div>
     <div>Down: ${Math.round(
-      tourInfo.swissTopoInfo.descent || tourInfo.elevation.loss
+      tourInfo.swissTopoInfo?.descent || tourInfo.elevation.loss
     )} m</div>
     <div>Min elevation: ${Math.round(tourInfo.elevation.min)} m</div>
     <div>Max elevation: ${Math.round(tourInfo.elevation.max)} m</div>
     <div>Length: ${
-      Math.round((tourInfo.swissTopoInfo.length || tourInfo.length) / 10) / 100
+      Math.round((tourInfo.swissTopoInfo?.length || tourInfo.length) / 10) / 100
     } km</div>
     <div>Estimate: ${
-      tourInfo.swissTopoInfo.estimatedHikingTimeInHours ||
+      tourInfo.swissTopoInfo?.estimatedHikingTimeInHours ||
       tourInfo.estimatedHikingTimeInHours
     }</div>
 

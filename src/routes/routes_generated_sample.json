@@ -1,7 +1,10 @@
 ﻿{
     "routes":  [
                    {
-                       "Name":  "wildhus säntis.gpx"
+                       "Name":  "5seengotthard.gpx"
+                   },
+                   {
+                       "Name":  "5seenwanderung.gpx"
                    }
                ]
 }
