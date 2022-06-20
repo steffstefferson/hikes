@@ -249,7 +249,12 @@ export function installServiceWorker() {
   }
 }
 
-export async function kickServiceWorker() {
+export async function resetApplication() {
+  resetServiceWorker().then(() => {
+    location.reload();
+  });
+}
+async function resetServiceWorker() {
   navigator.serviceWorker.getRegistrations().then(function (registrations) {
     for (let registration of registrations) {
       registration.unregister();

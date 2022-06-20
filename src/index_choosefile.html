@@ -36,7 +36,7 @@
 <script src="leaflet.filelayer.js"></script>
 <script type="module" src="index.js"></script>
 <script type="module">
-import {addLoadFunctionality,initMap,clearRoutes,installServiceWorker,changeToSwissTopo,changeToOpenStreetMap,kickServiceWorker} from './index.js';
+import {addLoadFunctionality,initMap,clearRoutes,installServiceWorker,changeToSwissTopo,changeToOpenStreetMap,resetApplication} from './index.js';
 
 window.addEventListener("load", function () {
   initMap();
@@ -45,7 +45,7 @@ window.addEventListener("load", function () {
 installServiceWorker();
 
 document.getElementById("clearroutes").addEventListener("click", clearRoutes, false);
-document.getElementById("reset").addEventListener("click", kickServiceWorker, false);
+document.getElementById("reset").addEventListener("click", resetApplication, false);
 document.getElementById("swisstopo").addEventListener("click", changeToSwissTopo, false);
 document.getElementById("osm").addEventListener("click", changeToOpenStreetMap, false);
 
