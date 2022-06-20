@@ -61,6 +61,7 @@ export function clearRoutes() {
     localStorage.removeItem(trackMetaData.trackId);
   });
   localStorage.removeItem("tracks");
+  localStorage.setItem("tracks-version", +new Date());
 }
 
 function addTrackToMap(trackMetaData) {
@@ -101,10 +102,12 @@ export function initRoutes() {
       loadOptions = "all";
     }
 
-    var jsonUrl = "routes/routes_generated.json";
+    var version = localStorage.getItem("tracks-version") || "0";
+
+    var jsonUrl = "routes/routes_generated.json?v=" + version;
 
     if (loadOptions != "all") {
-      jsonUrl = "routes/routes_generated_sample.json";
+      jsonUrl = "routes/routes_generated_sample.json?v=" + version;
     }
 
     try {
@@ -113,7 +116,7 @@ export function initRoutes() {
         .then((result) => {
           console.log(result);
           result.routes.forEach((route) => {
-            console.log(route.Name);
+            console.log("add route to map" + route.Name);
             addToMap("routes/" + route.Name);
           });
         });

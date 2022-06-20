@@ -8,7 +8,7 @@
 </extensions> */
 
 export function checkForSwissTopoInfo(x) {
-  console.log("checkForSiwssTopoInfo " + x.name, x);
+  //console.log("checkForSiwssTopoInfo " + x.name, x);
   if (x.point_type != "waypoint") return;
 
   var extensions = x.element.getElementsByTagName("extensions");
