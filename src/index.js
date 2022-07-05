@@ -126,21 +126,21 @@ export function initRoutes() {
   }, 0);
 }
 
+let defaultPolyLineOptions = {
+  color: "red",
+  opacity: 0.75,
+  weight: 3,
+  lineCap: "round",
+};
+
+let hoverPolyLineOptions = {
+  color: "green",
+  opacity: 1,
+  weight: 6,
+  lineCap: "round",
+};
+
 function addToMap(gpxFileName) {
-  let defaultPolyLineOptions = {
-    color: "red",
-    opacity: 0.75,
-    weight: 3,
-    lineCap: "round",
-  };
-
-  let hoverPolyLineOptions = {
-    color: "green",
-    opacity: 1,
-    weight: 6,
-    lineCap: "round",
-  };
-
   new L.GPX(gpxFileName, {
     async: true,
     marker_options: {
@@ -168,16 +168,36 @@ function addToMap(gpxFileName) {
       l.sourceTarget._info.estimatedHikingTimeInHours =
         parseInt(totalHikingTime) + "h " + minutes + "min";
     })
+    .on("click", function (ev) {
+      console.log("clicked", ev.layer);
+      if (lastHighlightedTrack == ev.layer) {
+        lastHighlightedTrack = null;
+        ev.layer.setStyle(defaultPolyLineOptions);
+      } else {
+        hideLastTrack();
+        lastHighlightedTrack = ev.layer;
+        ev.layer.setStyle(hoverPolyLineOptions);
+        ev.layer.bringToFront();
+      }
+    })
     .on("mouseover", function (ev) {
       ev.layer.setStyle(hoverPolyLineOptions);
       ev.layer.bringToFront();
     })
     .on("mouseout", function (ev) {
-      ev.layer.setStyle(defaultPolyLineOptions);
+      if (ev.layer != lastHighlightedTrack) {
+        ev.layer.setStyle(defaultPolyLineOptions);
+      }
     })
     .on("addpoint", enrichWithSwissTopoInfo)
     .on("skippoint", enrichWithSwissTopoInfo)
     .addTo(map);
+}
+let lastHighlightedTrack = null;
+function hideLastTrack() {
+  if (lastHighlightedTrack && lastHighlightedTrack.setStyle) {
+    lastHighlightedTrack.setStyle(defaultPolyLineOptions);
+  }
 }
 
 function enrichWithSwissTopoInfo(x) {
@@ -221,7 +241,7 @@ function setMapLayer() {
 
 export function changeToOpenStreetMap() {
   var osm = L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "Map data &copy; 2021 OpenStreetMap contributors",
+    attribution: "Map data &copy; 2022 OpenStreetMap contributors",
   });
   addLayer(osm, "OpenStreetMap");
 }

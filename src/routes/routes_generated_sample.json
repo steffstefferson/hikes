@@ -1,10 +1,13 @@
 ﻿{
-    "routes":  [
-                   {
-                       "Name":  "5seengotthard.gpx"
-                   },
-                   {
-                       "Name":  "5seenwanderung.gpx"
-                   }
-               ]
+  "routes": [
+    {
+      "Name": "5seengotthard.gpx"
+    },
+    {
+      "Name": "bedrettohöhenwanderung.gpx"
+    },
+    {
+      "Name": "cadlimo lukmanier.gpx"
+    }
+  ]
 }
