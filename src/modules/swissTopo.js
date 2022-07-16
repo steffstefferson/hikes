@@ -38,7 +38,7 @@ export function checkForSwissTopoInfo(x) {
   info.estimatedHikingTimeInHours =
     parseInt(hours) + "h " + Math.ceil(minutes) + "min";
 
-  console.log("swissTopoInfo", info);
+  // console.log("swissTopoInfo", info);
 
   return info;
 }
