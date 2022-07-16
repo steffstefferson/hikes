@@ -28,7 +28,7 @@ function addRouteIcon() {
     clickable: false,
   };
   L.Control.FileLayerLoad.LABEL =
-    '<img class="icon" src="folder.svg" alt="file icon"/>';
+    '<img class="icon" src="images/folder.svg" alt="file icon"/>';
   let control = L.Control.fileLayerLoad({
     fitBounds: true,
     layerOptions: {

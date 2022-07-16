@@ -16,7 +16,7 @@ self.addEventListener("install", (event) => {
         "leaflet.filelayer.js",
         "modules/hikingTimeCalculation.js",
         "modules/swissTopo.js",
-        "folder.svg",
+        "images/folder.svg",
         "images/pin-icon-end.png",
         "images/pin-icon-start.png",
         "images/pin-icon-wpt.png",
