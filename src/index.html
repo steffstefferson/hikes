@@ -14,7 +14,7 @@
 <body>
     <div id="map"></div>
 
-    <div class="layer_select">
+    <div class="menu">
         <label class="hamburger_menu" for="hamburgerCheck">🍔
         </label>
             <input type="checkbox" id="hamburgerCheck">
@@ -22,6 +22,7 @@
                 <li><a id="osm" href="#">Street Map</a></li>
                 <li></li><a id="swisstopo" href="#">Swiss Topo</a></li>
                 <li><a id="reset" href="#">Reset</a></li>
+                <li><input type="checkbox" id="mapOffline" name="mapOffline"><label for="mapOffline">Store map for offline mode</label></li>
         </ul>
 
       
@@ -35,8 +36,9 @@
 <script src="leaflet.filelayer.js"></script>
 <script type="module" src="index.js"></script>
 <script type="module">
-import {initMap,initRoutes,installServiceWorker,changeToSwissTopo,changeToOpenStreetMap,resetApplication} from './index.js';
-
+import {initMap,initRoutes,installServiceWorker,changeToSwissTopo,changeToOpenStreetMap} from './index.js';
+import {initCheckboxMapForOffline} from  './modules/storeOffline.js'
+import {resetApplication} from  './modules/applicationReset.js'
 window.addEventListener("load", function () {
   initMap();
   initRoutes();
@@ -47,6 +49,7 @@ document.getElementById("reset").addEventListener("click", resetApplication, fal
 document.getElementById("swisstopo").addEventListener("click", changeToSwissTopo, false);
 document.getElementById("osm").addEventListener("click", changeToOpenStreetMap, false);
 
+initCheckboxMapForOffline();
 
 </script>
 

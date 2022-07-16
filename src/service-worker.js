@@ -8,7 +8,6 @@ self.addEventListener("install", (event) => {
   event.waitUntil(
     caches.open("v1").then((cache) => {
       return cache.addAll([
-        "/",
         "index.html",
         "custom_tracks.html",
         "styles.css",
@@ -46,8 +45,11 @@ workbox.routing.registerRoute(
 
 function registerMapCache(name, host) {
   var checkMatch = function (event) {
-    var match = event.url.host == host;
-    //console.log("checking route:" + event.url + " its a match" + match);
+    var match = addMapTilesToCache && event.url.host == host;
+    // console.log("checking route:" + event.url + " its a match" + match, {
+    //   addMapTilesToCache,
+    //   match,
+    // });
     return match;
   };
 
@@ -71,3 +73,10 @@ function registerMapCache(name, host) {
 registerMapCache("openstreetmap-cache", "b.tile.openstreetmap.org");
 
 registerMapCache("swisstopo-cache", "wmts.geo.admin.ch");
+
+let addMapTilesToCache = false;
+
+const broadcastChannel = new BroadcastChannel("settings_offlineUse");
+broadcastChannel.onmessage = (event) => {
+  addMapTilesToCache = event.data.addMapTilesToCache;
+};

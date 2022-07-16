@@ -14,7 +14,7 @@
   align-items: center;
   margin: 10px;
 }
-.layer_select {
+.menu {
   margin: 5px;
   position: fixed;
   top: 5px;
@@ -25,7 +25,7 @@
   border: 1px solid black;
 }
 
-.layer_select ul {
+.menu ul {
   margin: 5px;
   font-size: 18px;
 }
@@ -36,26 +36,26 @@
   z-index: 0;
 }
 
-.layer_select input {
+.menu #hamburgerCheck {
   opacity: 0;
   width: 0;
   height: 0;
 }
 
-.layer_select li {
+.menu li {
   display: block;
 }
 
-.layer_select ul {
+.menu ul {
   margin-top: 20px;
 }
 
-.layer_select input ~ ul {
+.menu input ~ ul {
   visibility: hidden;
   display: none;
 }
 
-.layer_select input:checked ~ ul {
+.menu input:checked ~ ul {
   visibility: visible;
   display: inline;
 }

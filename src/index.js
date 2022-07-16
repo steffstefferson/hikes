@@ -53,17 +53,6 @@ function loadTracksFromLocalStorage() {
   });
 }
 
-export function clearRoutes() {
-  var allTracks = localStorage.getItem("tracks");
-  if (allTracks == null) return;
-
-  JSON.parse(allTracks).tracks.forEach((trackMetaData) => {
-    localStorage.removeItem(trackMetaData.trackId);
-  });
-  localStorage.removeItem("tracks");
-  localStorage.setItem("tracks-version", +new Date());
-}
-
 function addTrackToMap(trackMetaData) {
   console.log("load track from localStorage" + trackMetaData.trackId);
   var fileContent = localStorage.getItem(trackMetaData.trackId);
@@ -267,28 +256,6 @@ export function installServiceWorker() {
         console.log("Registration failed with " + error);
       });
   }
-}
-
-export async function resetApplication() {
-  resetServiceWorker().then(() => {
-    location.reload();
-  });
-}
-async function resetServiceWorker() {
-  navigator.serviceWorker.getRegistrations().then(function (registrations) {
-    for (let registration of registrations) {
-      registration.unregister();
-      console.log("kicked sw");
-    }
-    caches.keys().then((keyList) => {
-      return keyList.map(async (cache) => {
-        if (cache == "v1") {
-          console.log("Service Worker: Removing old cache: " + cache);
-          return await caches.delete(cache);
-        }
-      });
-    });
-  });
 }
 
 function addLayer(layer, layerName) {
