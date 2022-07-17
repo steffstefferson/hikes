@@ -4,6 +4,9 @@ export function setMapForOffline(e) {
 }
 
 function broadcastValue(addMapTilesToCache) {
+  document.getElementById("recButton").style.display = addMapTilesToCache
+    ? "inline"
+    : "none";
   const channel = new BroadcastChannel("settings_offlineUse");
   channel.postMessage({ addMapTilesToCache });
 }
