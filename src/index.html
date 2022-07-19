@@ -19,8 +19,10 @@
         </label>
             <input type="checkbox" id="hamburgerCheck">
             <ul>
-                <li><a id="osm" href="#">Street Map</a></li>
-                <li></li><a id="swisstopo" href="#">Swiss Topo</a></li>
+                <li>Layer:<select id="selectLayer">
+                    <option value="swisstopo">Swiss Topo</option>
+                    <option value="openstreetmap">Street Map</option>
+                    </select>
                 <li><a id="reset" href="#">Reset</a></li>
                 <li><input type="checkbox" id="chkShowRecordButton" name="chkShowRecordButton"><label for="chkShowRecordButton">
                     Record map sections for (later) offline use</label></li>
@@ -35,19 +37,19 @@
 <script src="leaflet.filelayer.js"></script>
 <script type="module" src="index.js"></script>
 <script type="module">
-import {initMap,initRoutes,changeToSwissTopo,changeToOpenStreetMap} from './index.js';
+import {initMap,initRoutes} from './index.js';
 import {initCheckboxMapForOffline} from  './modules/storeOffline.js'
 import {resetApplication} from  './modules/applicationReset.js'
 import {installServiceWorker} from  './modules/serviceWorkerRegister.js'
+import {initMapLayer,layerChanged} from  './modules/mapLayer.js'
 window.addEventListener("load", function () {
-  initMap();
+  var map = initMap();
+  initMapLayer(map);
   initRoutes();
 });
 installServiceWorker();
 
 document.getElementById("reset").addEventListener("click", resetApplication, false);
-document.getElementById("swisstopo").addEventListener("click", changeToSwissTopo, false);
-document.getElementById("osm").addEventListener("click", changeToOpenStreetMap, false);
 
 initCheckboxMapForOffline();
 
