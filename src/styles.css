@@ -57,7 +57,12 @@
 
 .menu input:checked ~ ul {
   visibility: visible;
-  display: inline;
+  display: grid;
+  justify-content: start;
+  justify-items: start;
+  grid-row-gap: 6px;
+  padding: 10px 20px;
+  margin: 0px;
 }
 
 .hamburger_menu {

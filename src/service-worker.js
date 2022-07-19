@@ -69,10 +69,27 @@ function registerMapCache(name, host) {
     })
   );
 }
+const shareTargetHandler = async ({ event }) => {
+  console.log("Saving media locally...");
+  const formData = await event.request.formData();
+  const mediaFiles = formData.getAll("media");
+
+  const channel = new BroadcastChannel("file_dropped");
+  for (const mediaFile of mediaFiles) {
+    if (!mediaFile.name) {
+      console.log("Sorry! No name found on incoming media.");
+      continue;
+    }
+    channel.postMessage({ file: mediaFile });
+  }
+  return Response.redirect("/?shareTarget&fileCount=" + mediaFiles.length, 303);
+};
 
 registerMapCache("openstreetmap-cache", "b.tile.openstreetmap.org");
 
 registerMapCache("swisstopo-cache", "wmts.geo.admin.ch");
+
+workbox.routing.registerRoute("/_share-target", shareTargetHandler, "POST");
 
 let addMapTilesToCache = false;
 

@@ -23,5 +23,18 @@
   "start_url": "index.html",
   "background_color": "#4CAF50",
   "display": "standalone",
-  "theme_color": "#4CAF50"
+  "theme_color": "#4CAF50",
+  "share_target": {
+    "action": "/_share-target",
+    "enctype": "multipart/form-data",
+    "method": "POST",
+    "params": {
+      "files": [
+        {
+          "name": "media",
+          "accept": ["image/*"]
+        }
+      ]
+    }
+  }
 }

@@ -1,5 +1,6 @@
 import { checkForSwissTopoInfo } from "./modules/swissTopo.js";
 import { calculateHikingTime } from "./modules/hikingTimeCalculation.js";
+import { addFileToLocalStorage } from "./modules/localStorageTracks.js";
 
 var map = null;
 var onceCentered = false;
@@ -14,7 +15,11 @@ export function initMap() {
 }
 export function addLoadFunctionality() {
   addRouteIcon();
-  loadTracksFromLocalStorage();
+  loadTracksFromLocalStorage(addToMap);
+}
+
+export function loadStoredTracks() {
+  loadTracksFromLocalStorage(addToMap);
 }
 
 function addRouteIcon() {
@@ -39,79 +44,8 @@ function addRouteIcon() {
   });
   control.addTo(map);
   control.loader.on("data:loading", function (e) {
-    addFileToLocalStorage(e);
+    addFileToLocalStorage(e, e.content, "leafletExt");
   });
-}
-
-function loadTracksFromLocalStorage() {
-  var allTracks = localStorage.getItem("tracks");
-  if (allTracks == null) return;
-
-  JSON.parse(allTracks).tracks.forEach((trackMetaData) => {
-    addTrackToMap(trackMetaData);
-  });
-}
-
-function addTrackToMap(trackMetaData) {
-  console.log("load track from localStorage" + trackMetaData.trackId);
-  var fileContent = localStorage.getItem(trackMetaData.trackId);
-  if (fileContent != null) addToMap(fileContent);
-}
-
-function addFileToLocalStorage(file) {
-  let date = new Date().toISOString();
-
-  var trackId = "track-" + +new Date();
-
-  let trackMetaData = {
-    trackId,
-    date,
-    ext: file.format,
-    name: file.filename,
-  };
-
-  localStorage.setItem(trackId, file.content);
-
-  var allTracks = JSON.parse(localStorage.getItem("tracks"));
-  if (allTracks == null) {
-    allTracks = { tracks: [] };
-    localStorage.setItem("tracks", JSON.stringify(allTracks));
-  }
-  allTracks.tracks.push(trackMetaData);
-  localStorage.setItem("tracks", JSON.stringify(allTracks));
-  console.log("Track with Id=" + trackId + " added to storage");
-}
-
-export function initRoutes() {
-  setTimeout(() => {
-    var loadOptions = localStorage.getItem("load_options");
-    if (loadOptions == null) {
-      localStorage.setItem("load_options", "all");
-      loadOptions = "all";
-    }
-
-    var version = localStorage.getItem("tracks-version") || "0";
-
-    var jsonUrl = "routes/routes_generated.json?v=" + version;
-
-    if (loadOptions != "all") {
-      jsonUrl = "routes/routes_generated_sample.json?v=" + version;
-    }
-
-    try {
-      fetch(jsonUrl)
-        .then((response) => response.json())
-        .then((result) => {
-          console.log(result);
-          result.routes.forEach((route) => {
-            console.log("add route to map" + route.Name);
-            addToMap("routes/" + route.Name);
-          });
-        });
-    } catch (e) {
-      console.log(e);
-    }
-  }, 0);
 }
 
 let defaultPolyLineOptions = {
@@ -128,7 +62,7 @@ let hoverPolyLineOptions = {
   lineCap: "round",
 };
 
-function addToMap(gpxFileName) {
+export function addToMap(gpxFileName) {
   new L.GPX(gpxFileName, {
     async: true,
     marker_options: {
@@ -169,11 +103,11 @@ function addToMap(gpxFileName) {
       }
     })
     .on("mouseover", function (ev) {
-      ev.layer.setStyle(hoverPolyLineOptions);
-      ev.layer.bringToFront();
+      ev.layer.setStyle && ev.layer.setStyle(hoverPolyLineOptions);
+      ev.layer.bringToFront && ev.layer.bringToFront();
     })
     .on("mouseout", function (ev) {
-      if (ev.layer != lastHighlightedTrack) {
+      if (ev.layer && ev.layer.setStyle && ev.layer != lastHighlightedTrack) {
         ev.layer.setStyle(defaultPolyLineOptions);
       }
     })

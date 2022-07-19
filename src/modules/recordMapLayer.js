@@ -22,7 +22,7 @@ function broadcastIsRecording(isRecording) {
   channel.postMessage({ isRecording });
 }
 
-export function initCheckboxMapForOffline() {
+export function initRecordMapLayer() {
   var showRecordButton = !!+localStorage.getItem("showRecordButton");
 
   var checkBox = document.getElementById("chkShowRecordButton");

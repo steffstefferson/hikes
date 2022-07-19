@@ -1,12 +1,13 @@
 export function clearRoutes() {
-  var allTracks = localStorage.getItem("tracks");
-  if (allTracks == null) return;
+  // var allTracks = localStorage.getItem("tracks");
+  // if (allTracks == null) return;
 
-  JSON.parse(allTracks).tracks.forEach((trackMetaData) => {
-    localStorage.removeItem(trackMetaData.trackId);
-  });
-  localStorage.removeItem("tracks");
-  localStorage.setItem("tracks-version", +new Date());
+  // JSON.parse(allTracks).tracks.forEach((trackMetaData) => {
+  //   localStorage.removeItem(trackMetaData.trackId);
+  // });
+  // localStorage.removeItem("tracks");
+  // localStorage.setItem("tracks-version", +new Date());
+  localStorage.clear();
 }
 
 export async function resetApplication() {
