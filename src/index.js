@@ -2,7 +2,6 @@ import { checkForSwissTopoInfo } from "./modules/swissTopo.js";
 import { calculateHikingTime } from "./modules/hikingTimeCalculation.js";
 
 var map = null;
-var currentMapTileLayer = null;
 var onceCentered = false;
 export function initMap() {
   var L = window.L;
@@ -11,7 +10,7 @@ export function initMap() {
     center: [47.17599, 7.33801],
     zoom: 12,
   });
-  setMapLayer();
+  return map;
 }
 export function addLoadFunctionality() {
   addRouteIcon();
@@ -218,40 +217,4 @@ function getHtmlInfoElement(tourInfo) {
 
     </div>`;
   return template;
-}
-
-function setMapLayer() {
-  if (localStorage.getItem("mapLayer") == "OpenStreetMap") {
-    changeToOpenStreetMap();
-  } else {
-    changeToSwissTopo();
-  }
-}
-
-export function changeToOpenStreetMap() {
-  var osm = L.tileLayer("http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
-    attribution: "Map data &copy; 2022 OpenStreetMap contributors",
-  });
-  addLayer(osm, "OpenStreetMap");
-}
-
-export function changeToSwissTopo() {
-  var swissTopo = L.tileLayer(
-    "https://wmts.geo.admin.ch/1.0.0/ch.swisstopo.pixelkarte-farbe/default/current/3857/{z}/{x}/{y}.jpeg",
-    {
-      attribution: "swisstopo",
-    }
-  );
-  addLayer(swissTopo, "SwissTopo");
-}
-
-function addLayer(layer, layerName) {
-  localStorage.setItem("mapLayer", layerName);
-  map.eachLayer((x) => {
-    if (x._leaflet_id == currentMapTileLayer) {
-      map.removeLayer(x);
-    }
-  });
-  map.addLayer(layer);
-  currentMapTileLayer = layer._leaflet_id;
 }
