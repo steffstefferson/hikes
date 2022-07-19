@@ -245,20 +245,6 @@ export function changeToSwissTopo() {
   addLayer(swissTopo, "SwissTopo");
 }
 
-var swScope = location.href.indexOf("localhost") >= 0 ? "." : "/hikes/src/";
-export function installServiceWorker() {
-  if ("serviceWorker" in navigator) {
-    navigator.serviceWorker
-      .register("service-worker.js", { scope: swScope })
-      .then((reg) => {
-        console.log("Registration succeeded. Scope is " + reg.scope);
-      })
-      .catch((error) => {
-        console.log("Registration failed with " + error);
-      });
-  }
-}
-
 function addLayer(layer, layerName) {
   localStorage.setItem("mapLayer", layerName);
   map.eachLayer((x) => {

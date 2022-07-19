@@ -76,7 +76,7 @@ registerMapCache("swisstopo-cache", "wmts.geo.admin.ch");
 
 let addMapTilesToCache = false;
 
-const broadcastChannel = new BroadcastChannel("settings_offlineUse");
+const broadcastChannel = new BroadcastChannel("settings_isRecording");
 broadcastChannel.onmessage = (event) => {
-  addMapTilesToCache = event.data.addMapTilesToCache;
+  addMapTilesToCache = event.data.isRecording;
 };

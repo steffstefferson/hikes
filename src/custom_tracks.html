@@ -36,9 +36,9 @@
 <script src="leaflet.filelayer.js"></script>
 <script type="module" src="index.js"></script>
 <script type="module">
-import {addLoadFunctionality,initMap,installServiceWorker,changeToSwissTopo,changeToOpenStreetMap} from './index.js';
+import {addLoadFunctionality,initMap,changeToSwissTopo,changeToOpenStreetMap} from './index.js';
 import {resetApplication,clearRoutes} from  './modules/applicationReset.js'
-
+import {installServiceWorker} from  './modules/serviceWorkerRegister.js'
 window.addEventListener("load", function () {
   initMap();
   addLoadFunctionality();

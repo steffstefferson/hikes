@@ -1,19 +1,39 @@
-export function setMapForOffline(e) {
-  localStorage.setItem("addMapTilesToCache", +e.target.checked);
-  broadcastValue(!!+e.target.checked);
-}
-
-function broadcastValue(addMapTilesToCache) {
-  document.getElementById("recButton").style.display = addMapTilesToCache
+function toggleButton(visible) {
+  localStorage.setItem("showRecordButton", +visible);
+  setRecording(visible);
+  document.getElementById("recButton").checked = visible;
+  document.getElementById("recButton").style.display = visible
     ? "inline"
     : "none";
-  const channel = new BroadcastChannel("settings_offlineUse");
-  channel.postMessage({ addMapTilesToCache });
 }
+
+function setRecording(isRecording) {
+  localStorage.setItem("isRecording", isRecording);
+  broadcastIsRecording(isRecording);
+}
+
+export function toggleRecording() {
+  var isRecording = !!+localStorage.getItem("isRecording");
+  setRecording(!isRecording);
+}
+
+function broadcastIsRecording(isRecording) {
+  const channel = new BroadcastChannel("settings_isRecording");
+  channel.postMessage({ isRecording });
+}
+
 export function initCheckboxMapForOffline() {
-  var addMapTilesToCache = !!+localStorage.getItem("addMapTilesToCache");
-  var checkBox = document.getElementById("mapOffline");
-  checkBox.addEventListener("change", setMapForOffline, false);
-  checkBox.checked = addMapTilesToCache;
-  broadcastValue(addMapTilesToCache);
+  var showRecordButton = !!+localStorage.getItem("showRecordButton");
+
+  var checkBox = document.getElementById("chkShowRecordButton");
+  checkBox.addEventListener(
+    "change",
+    (e) => toggleButton(e.target.checked),
+    false
+  );
+  checkBox.checked = showRecordButton;
+
+  var recordButton = document.getElementById("recButton");
+  recordButton.addEventListener("change", toggleRecording, false);
+  toggleButton(showRecordButton);
 }

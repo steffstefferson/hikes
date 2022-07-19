@@ -22,12 +22,12 @@
                 <li><a id="osm" href="#">Street Map</a></li>
                 <li></li><a id="swisstopo" href="#">Swiss Topo</a></li>
                 <li><a id="reset" href="#">Reset</a></li>
-                <li><input type="checkbox" id="mapOffline" name="mapOffline"><label for="mapOffline">
+                <li><input type="checkbox" id="chkShowRecordButton" name="chkShowRecordButton"><label for="chkShowRecordButton">
                     Record map sections for (later) offline use</label></li>
         </ul>
     </label>
     </div>
-    <button id="recButton" class="recordingButton"></button>
+    <input type="checkbox" id="recButton" class="recordingButton">
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
 <script src="gpx.js"></script>
@@ -35,9 +35,10 @@
 <script src="leaflet.filelayer.js"></script>
 <script type="module" src="index.js"></script>
 <script type="module">
-import {initMap,initRoutes,installServiceWorker,changeToSwissTopo,changeToOpenStreetMap} from './index.js';
+import {initMap,initRoutes,changeToSwissTopo,changeToOpenStreetMap} from './index.js';
 import {initCheckboxMapForOffline} from  './modules/storeOffline.js'
 import {resetApplication} from  './modules/applicationReset.js'
+import {installServiceWorker} from  './modules/serviceWorkerRegister.js'
 window.addEventListener("load", function () {
   initMap();
   initRoutes();
