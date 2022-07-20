@@ -1,15 +1,15 @@
 export function loadTracksFromLocalStorage(fnTrackLoaded) {
-  var allTracks = localStorage.getItem("tracks");
+  let allTracks = localStorage.getItem("tracks");
   if (allTracks == null) return;
 
   JSON.parse(allTracks).tracks.forEach((trackMetaData) => {
-    var fileContent = localStorage.getItem(trackMetaData.trackId);
+    let fileContent = localStorage.getItem(trackMetaData.trackId);
     if (fileContent != null) fnTrackLoaded(fileContent);
   });
 }
 
 export function processFile(file) {
-  return new Promise(function (resolve, reject) {
+  return new Promise((resolve, reject) => {
     let reader = new FileReader();
     reader.onload = function (e) {
       addFileToLocalStorage(file, e.target.result, "inputFile");
@@ -23,7 +23,7 @@ export function processFile(file) {
 export function addFileToLocalStorage(file, content, fileSource) {
   let date = new Date().toISOString();
 
-  var trackId = "track-" + +new Date();
+  let trackId = "track-" + +new Date();
 
   let trackMetaData = {
     trackId,
@@ -35,7 +35,7 @@ export function addFileToLocalStorage(file, content, fileSource) {
 
   localStorage.setItem(trackId, content);
 
-  var allTracks = JSON.parse(localStorage.getItem("tracks"));
+  let allTracks = JSON.parse(localStorage.getItem("tracks"));
   if (allTracks == null) {
     allTracks = { tracks: [] };
     localStorage.setItem("tracks", JSON.stringify(allTracks));
@@ -48,8 +48,72 @@ export function addFileToLocalStorage(file, content, fileSource) {
 export function initFileDroppedChannel(fnAddToMap) {
   const broadcastChannel = new BroadcastChannel("file_dropped");
   broadcastChannel.onmessage = (event) => {
-    var file = event.data.file;
+    let file = event.data.file;
     console.log("got file dropped message", file.name);
     processFile(file, "webShareTraget").then(fnAddToMap);
   };
+}
+
+let _map = null;
+
+function initShowLoadTrackButton() {
+  let showLoadTrackButton = localStorage.getItem("showLoadTrackButton");
+  if (showLoadTrackButton == null) {
+    showLoadTrackButton = true;
+  } else {
+    showLoadTrackButton = !!showLoadTrackButton;
+  }
+
+  let checkBox = document.getElementById("chkShowLoadTrackButton");
+  checkBox.addEventListener(
+    "change",
+    (e) => toggleButton(e.target.checked),
+    false
+  );
+  checkBox.checked = showLoadTrackButton;
+  toggleButton(showLoadTrackButton);
+}
+
+function toggleButton(visible) {
+  localStorage.setItem("showLoadTrackButton", +visible);
+  toggleAddRouteIcon(visible);
+}
+
+export function addLoadFunctionality(map, addToMap) {
+  _map = map;
+  initShowLoadTrackButton();
+  loadTracksFromLocalStorage(addToMap);
+}
+
+var _addRouteIcon = null;
+
+function toggleAddRouteIcon(visible) {
+  if (!visible) {
+    if (_addRouteIcon) {
+      _addRouteIcon.remove();
+      return;
+    }
+  }
+  console.log("add route icon");
+  var style = {
+    color: "red",
+    opacity: 1.0,
+    fillOpacity: 1.0,
+    weight: 2,
+    clickable: false,
+  };
+  L.Control.FileLayerLoad.LABEL =
+    '<img class="icon" src="images/folder.svg" alt="file icon"/>';
+  let control = L.Control.fileLayerLoad({
+    fitBounds: true,
+    layerOptions: {
+      style: style,
+      pointToLayer: (data, latlng) => L.circleMarker(latlng, { style: style }),
+    },
+  });
+  control.addTo(_map);
+  control.loader.on("data:loading", function (e) {
+    addFileToLocalStorage(e, e.content, "leafletExt");
+  });
+  _addRouteIcon = control;
 }
