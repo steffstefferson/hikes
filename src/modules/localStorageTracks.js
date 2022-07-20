@@ -62,7 +62,7 @@ function initShowLoadTrackButton() {
   if (showLoadTrackButton == null) {
     showLoadTrackButton = true;
   } else {
-    showLoadTrackButton = !!showLoadTrackButton;
+    showLoadTrackButton = !!+showLoadTrackButton;
   }
 
   let checkBox = document.getElementById("chkShowLoadTrackButton");
@@ -94,8 +94,8 @@ function toggleAddRouteIcon(visible) {
   if (!visible) {
     if (_addRouteIcon) {
       _addRouteIcon.remove();
-      return;
     }
+    return;
   }
   var style = {
     color: "red",
