@@ -87,12 +87,12 @@
             format: parser.ext,
             content: e.target.result,
           });
-          layer = parser.processor.call(this, e.target.result, parser.ext);
-          this.fire("data:loaded", {
-            layer: layer,
-            filename: file.name,
-            format: parser.ext,
-          });
+          //layer = parser.processor.call(this, e.target.result, parser.ext);
+          // this.fire("data:loaded", {
+          //   layer: layer,
+          //   filename: file.name,
+          //   format: parser.ext,
+          // });
         } catch (err) {
           this.fire("data:error", { error: err });
         }

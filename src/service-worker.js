@@ -16,7 +16,6 @@ self.addEventListener("install", (event) => {
         "modules/hikingTimeCalculation.js",
         "modules/swissTopo.js",
         "modules/applicationReset.js",
-        "modules/localStorageTracks.js",
         "modules/mapLayer.js",
         "modules/recordMapLayer.js",
         "modules/sampleRoutes.js",

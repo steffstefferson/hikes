@@ -1,10 +1,13 @@
-export function loadTracksFromLocalStorage(fnTrackLoaded) {
+export function loadTracksFromLocalStorage() {
   let allTracks = localStorage.getItem("tracks");
   if (allTracks == null) return;
-
+  var centerMap = true;
   JSON.parse(allTracks).tracks.forEach((trackMetaData) => {
     let fileContent = localStorage.getItem(trackMetaData.trackId);
-    if (fileContent != null) fnTrackLoaded(fileContent);
+    if (fileContent != null) {
+      _addToMap(fileContent, centerMap);
+      centerMap = false;
+    }
   });
 }
 
@@ -54,8 +57,6 @@ export function initFileDroppedChannel(fnAddToMap) {
   };
 }
 
-let _map = null;
-
 function initShowLoadTrackButton() {
   let showLoadTrackButton = localStorage.getItem("showLoadTrackButton");
   if (showLoadTrackButton == null) {
@@ -79,13 +80,15 @@ function toggleButton(visible) {
   toggleAddRouteIcon(visible);
 }
 
+let _map = null;
+let _addToMap = null;
+let _addRouteIcon = null;
 export function addLoadFunctionality(map, addToMap) {
   _map = map;
+  _addToMap = addToMap;
   initShowLoadTrackButton();
-  loadTracksFromLocalStorage(addToMap);
+  loadTracksFromLocalStorage();
 }
-
-var _addRouteIcon = null;
 
 function toggleAddRouteIcon(visible) {
   if (!visible) {
@@ -94,7 +97,6 @@ function toggleAddRouteIcon(visible) {
       return;
     }
   }
-  console.log("add route icon");
   var style = {
     color: "red",
     opacity: 1.0,
@@ -112,7 +114,8 @@ function toggleAddRouteIcon(visible) {
     },
   });
   control.addTo(_map);
-  control.loader.on("data:loading", function (e) {
+  control.loader.on("data:loading", (e) => {
+    _addToMap(e.content, true);
     addFileToLocalStorage(e, e.content, "leafletExt");
   });
   _addRouteIcon = control;

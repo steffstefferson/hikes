@@ -2,7 +2,6 @@ import { checkForSwissTopoInfo } from "./swissTopo.js";
 import { calculateHikingTime } from "./hikingTimeCalculation.js";
 
 var map = null;
-var onceCentered = false;
 export function initMap() {
   var L = window.L;
 
@@ -27,7 +26,7 @@ let hoverPolyLineOptions = {
   lineCap: "round",
 };
 
-export function addToMap(gpxFileName) {
+export function addToMap(gpxFileName, centerMap) {
   new L.GPX(gpxFileName, {
     async: true,
     marker_options: {
@@ -42,9 +41,8 @@ export function addToMap(gpxFileName) {
   })
     .on("loaded", function (e) {
       e.target.bindTooltip(getHtmlInfoElement(e.target._info));
-      if (!onceCentered) {
+      if (centerMap) {
         map.fitBounds(e.target.getBounds());
-        onceCentered = true;
       }
     })
     .on("addline", function (l) {

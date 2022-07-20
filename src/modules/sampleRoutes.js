@@ -26,9 +26,11 @@ export function loadSampleRoutes(fnAddToMap) {
         .then((response) => response.json())
         .then((result) => {
           console.log(result);
+          centerMap = true;
           result.routes.forEach((route) => {
             console.log("add route to map" + route.Name);
-            fnAddToMap("routes/" + route.Name);
+            fnAddToMap("routes/" + route.Name, centerMap);
+            centerMap = false;
           });
         });
     } catch (e) {
