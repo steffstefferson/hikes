@@ -1,9 +1,15 @@
-## Some hikes in switzerland
+## use
 
-Hikes can be viewed as GitHub Pages under: https://steffstefferson.github.io/hikes/src/
+Application can be viewed as GitHub Pages under: https://steffstefferson.github.io/hikes/src/
 
-Custom gpx files can be uploaded and added to a map via:
-https://steffstefferson.github.io/hikes/src/custom_tracks.html
+Features:
+
+- Display any gpx route on the map
+- fully offline available
+- show some sample routes
+- Map layers: SwissTopo, OpenStreetMap
+- Record map section for later offline use
+- WebShareTarget
 
 ## develop
 

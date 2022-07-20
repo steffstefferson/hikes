@@ -13,7 +13,7 @@ function setRecording(isRecording) {
 }
 
 export function toggleRecording() {
-  var isRecording = !!+localStorage.getItem("isRecording");
+  let isRecording = !!+localStorage.getItem("isRecording");
   setRecording(!isRecording);
 }
 
@@ -23,9 +23,9 @@ function broadcastIsRecording(isRecording) {
 }
 
 export function initRecordMapLayer() {
-  var showRecordButton = !!+localStorage.getItem("showRecordButton");
+  let showRecordButton = !!+localStorage.getItem("showRecordButton");
 
-  var checkBox = document.getElementById("chkShowRecordButton");
+  let checkBox = document.getElementById("chkShowRecordButton");
   checkBox.addEventListener(
     "change",
     (e) => toggleButton(e.target.checked),
@@ -33,7 +33,7 @@ export function initRecordMapLayer() {
   );
   checkBox.checked = showRecordButton;
 
-  var recordButton = document.getElementById("recButton");
+  let recordButton = document.getElementById("recButton");
   recordButton.addEventListener("change", toggleRecording, false);
   toggleButton(showRecordButton);
 }

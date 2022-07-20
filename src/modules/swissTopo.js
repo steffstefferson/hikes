@@ -11,8 +11,8 @@ export function checkForSwissTopoInfo(x) {
   //console.log("checkForSiwssTopoInfo " + x.name, x);
   if (x.point_type != "waypoint") return;
 
-  var extensions = x.element.getElementsByTagName("extensions");
-  var swissTopoNode = null;
+  let extensions = x.element.getElementsByTagName("extensions");
+  let swissTopoNode = null;
   if (extensions && extensions.length == 1) {
     swissTopoNode = extensions[0].querySelector("waypoint_stage_before");
   }
@@ -20,7 +20,7 @@ export function checkForSwissTopoInfo(x) {
     return;
   }
 
-  var info = {
+  let info = {
     ascent: +swissTopoNode.attributes["ascent"].value,
     durationSec: +swissTopoNode.attributes["duration"].value,
     length: +swissTopoNode.attributes["distance"].value,
@@ -31,14 +31,12 @@ export function checkForSwissTopoInfo(x) {
     return null;
   }
 
-  var totalMinutes = info.durationSec / 60;
-  var hours = totalMinutes / 60;
-  var minutes = totalMinutes - parseInt(hours) * 60;
+  let totalMinutes = info.durationSec / 60;
+  let hours = totalMinutes / 60;
+  let minutes = totalMinutes - parseInt(hours) * 60;
 
   info.estimatedHikingTimeInHours =
     parseInt(hours) + "h " + Math.ceil(minutes) + "min";
-
-  // console.log("swissTopoInfo", info);
 
   return info;
 }

@@ -1,6 +1,5 @@
-import { checkForSwissTopoInfo } from "./modules/swissTopo.js";
-import { calculateHikingTime } from "./modules/hikingTimeCalculation.js";
-import { addFileToLocalStorage } from "./modules/localStorageTracks.js";
+import { checkForSwissTopoInfo } from "./swissTopo.js";
+import { calculateHikingTime } from "./hikingTimeCalculation.js";
 
 var map = null;
 var onceCentered = false;
@@ -12,40 +11,6 @@ export function initMap() {
     zoom: 12,
   });
   return map;
-}
-export function addLoadFunctionality() {
-  addRouteIcon();
-  loadTracksFromLocalStorage(addToMap);
-}
-
-export function loadStoredTracks() {
-  loadTracksFromLocalStorage(addToMap);
-}
-
-function addRouteIcon() {
-  console.log("add route icon");
-  var style = {
-    color: "red",
-    opacity: 1.0,
-    fillOpacity: 1.0,
-    weight: 2,
-    clickable: false,
-  };
-  L.Control.FileLayerLoad.LABEL =
-    '<img class="icon" src="images/folder.svg" alt="file icon"/>';
-  let control = L.Control.fileLayerLoad({
-    fitBounds: true,
-    layerOptions: {
-      style: style,
-      pointToLayer: function (data, latlng) {
-        return L.circleMarker(latlng, { style: style });
-      },
-    },
-  });
-  control.addTo(map);
-  control.loader.on("data:loading", function (e) {
-    addFileToLocalStorage(e, e.content, "leafletExt");
-  });
 }
 
 let defaultPolyLineOptions = {

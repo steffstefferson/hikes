@@ -7,15 +7,15 @@ export function checkForNewSampleRoute(fnAddToMap) {
 export function loadSampleRoutes(fnAddToMap) {
   localStorage.setItem("sampleRoutesLoaded", 1);
   setTimeout(() => {
-    var loadOptions = localStorage.getItem("load_options");
+    let loadOptions = localStorage.getItem("load_options");
     if (loadOptions == null) {
       localStorage.setItem("load_options", "all");
       loadOptions = "all";
     }
 
-    var version = localStorage.getItem("tracks-version") || "0";
+    let version = localStorage.getItem("tracks-version") || "0";
 
-    var jsonUrl = "routes/routes_generated.json?v=" + version;
+    let jsonUrl = "routes/routes_generated.json?v=" + version;
 
     if (loadOptions != "all") {
       jsonUrl = "routes/routes_generated_sample.json?v=" + version;

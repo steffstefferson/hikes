@@ -26,10 +26,9 @@
                
                 <li><input type="checkbox" id="chkShowRecordButton" name="chkShowRecordButton"><label for="chkShowRecordButton">
                     Record map sections for (later) offline use</label></li>
-                    <label for="fileInput">
-                        Select GPX file to display on map:</label>
-                <li><input multiple type="file" id="fileInput" name="fileInput"></li>
-                    <li><button id="btnSampleRoutes" title="Sabrina's most prefered hikes">Load sample routes</button></li>
+                    <li><input type="checkbox" id="chkShowLoadTrackButton" name="chkShowLoadTrackButton"><label for="chkShowLoadTrackButton">
+                        Show load track icon</label></li>
+                    <li><button id="btnSampleRoutes" title="Sabrina's most preferred hikes">Load sample routes</button></li>
                     <li><button id="btnReset" title="Delete Cache, kick Service-Worker, remove saved routes.">Reset Application</button></li>
         </ul>
     </label>
@@ -37,37 +36,30 @@
     <input type="checkbox" id="recButton" class="recordingButton">
 </body>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.7.1/leaflet.js"></script>
-<script src="gpx.js"></script>
+<script src="modules/thirdparty/gpx.js"></script>
 <script src="https://unpkg.com/togeojson@0.14.2"></script>
-<script src="leaflet.filelayer.js"></script>
-<script type="module" src="index.js"></script>
+<script src="modules/thirdparty/leaflet.filelayer.js"></script>
 <script type="module">
 
-import {initMap,addToMap} from './index.js';
+import {initMap,addToMap} from './modules/map.js';
 import {loadSampleRoutes,checkForNewSampleRoute} from './modules/sampleRoutes.js';
 import {initRecordMapLayer} from  './modules/recordMapLayer.js'
 import {resetApplication} from  './modules/applicationReset.js'
 import {installServiceWorker} from  './modules/serviceWorkerRegister.js'
 import {initMapLayer,layerChanged} from  './modules/mapLayer.js'
-import {initFileDroppedChannel,loadTracksFromLocalStorage,processFile } from "./modules/localStorageTracks.js";
+import {initFileDroppedChannel,loadTracksFromLocalStorage,addLoadFunctionality } from "./modules/localStorageTracks.js";
 
 window.addEventListener("load", function () {
   var map = initMap();
   initMapLayer(map);
   loadTracksFromLocalStorage(addToMap);
+  addLoadFunctionality(map,addToMap);
   checkForNewSampleRoute(addToMap);
 });
 installServiceWorker();
 initFileDroppedChannel(addToMap);
 document.getElementById("btnReset").addEventListener("click", resetApplication, false);
 document.getElementById("btnSampleRoutes").addEventListener("click",() => loadSampleRoutes(addToMap), false);
-document.getElementById("fileInput").addEventListener("change",(e) => {
-    [... e.target.files].forEach((file) =>{
-        processFile(file).then(addToMap);
-    });
-}, false);
-
-
 initRecordMapLayer();
 </script>
 

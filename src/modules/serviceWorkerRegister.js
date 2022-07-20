@@ -1,4 +1,4 @@
-var swScope = location.href.indexOf("localhost") >= 0 ? "." : "/hikes/src/";
+let swScope = location.href.indexOf("localhost") >= 0 ? "." : "/hikes/src/";
 export function installServiceWorker() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
@@ -9,7 +9,7 @@ export function installServiceWorker() {
           if (!navigator.serviceWorker.controller) {
             return;
           }
-          var installingWorker = registration.installing;
+          let installingWorker = registration.installing;
 
           installingWorker.onstatechange = () => {
             if (installingWorker.state == "installed") {
@@ -26,7 +26,7 @@ export function installServiceWorker() {
   }
 }
 function showNewVersionAvailableDialog() {
-  var div = document.createElement("div");
+  let div = document.createElement("div");
   div.id = "newVersion";
   div.classList.add("newVersion");
   div.innerHTML = template;
@@ -55,7 +55,7 @@ function showNewVersionAvailableDialog() {
       .getElementById("button_newVersionNo")
       .removeEventListener("click", skipNewVersion);
 
-    var el = document.getElementById("newVersion");
+    let el = document.getElementById("newVersion");
     el.parentElement.removeChild(el);
   }
 }
