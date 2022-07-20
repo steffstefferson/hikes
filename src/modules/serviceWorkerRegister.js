@@ -1,5 +1,13 @@
 let swScope = location.href.indexOf("localhost") >= 0 ? "." : "/hikes/src/";
-export function installServiceWorker() {
+export function initServiceWorker() {
+  //thanks jaffa
+  addEventListener("focus", () => {
+    installServiceWorker();
+  });
+  installServiceWorker();
+}
+
+function installServiceWorker() {
   if ("serviceWorker" in navigator) {
     navigator.serviceWorker
       .register("service-worker.js", { scope: swScope })

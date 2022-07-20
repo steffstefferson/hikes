@@ -45,7 +45,7 @@ import {initMap,addToMap} from './modules/map.js';
 import {loadSampleRoutes,checkForNewSampleRoute} from './modules/sampleRoutes.js';
 import {initRecordMapLayer} from  './modules/recordMapLayer.js'
 import {resetApplication} from  './modules/applicationReset.js'
-import {installServiceWorker} from  './modules/serviceWorkerRegister.js'
+import {initServiceWorker} from  './modules/serviceWorkerRegister.js'
 import {initMapLayer,layerChanged} from  './modules/mapLayer.js'
 import {initFileDroppedChannel,loadTracksFromLocalStorage,addLoadFunctionality } from "./modules/localStorageTracks.js";
 
@@ -56,7 +56,7 @@ window.addEventListener("load", function () {
   loadTracksFromLocalStorage();
   checkForNewSampleRoute(addToMap);
 });
-installServiceWorker();
+initServiceWorker();
 initFileDroppedChannel(addToMap);
 document.getElementById("btnReset").addEventListener("click", resetApplication, false);
 document.getElementById("btnSampleRoutes").addEventListener("click",() => loadSampleRoutes(addToMap), false);

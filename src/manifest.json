@@ -32,7 +32,7 @@
       "files": [
         {
           "name": "media",
-          "accept": ["image/*"]
+          "accept": ["text/*"]
         }
       ]
     }
