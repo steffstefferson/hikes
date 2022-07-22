@@ -31,12 +31,8 @@
     "params": {
       "files": [
         {
-          "name": "text",
-          "accept": ["text/*"]
-        },
-        {
           "name": "media",
-          "accept": ["image/*"]
+          "accept": [".gpx", ".kml", ".json", ".geojson", ".txt"]
         }
       ]
     }
