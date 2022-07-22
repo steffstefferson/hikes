@@ -31,8 +31,12 @@
     "params": {
       "files": [
         {
-          "name": "media",
+          "name": "text",
           "accept": ["text/*"]
+        },
+        {
+          "name": "media",
+          "accept": ["image/*"]
         }
       ]
     }
