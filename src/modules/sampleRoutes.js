@@ -20,7 +20,7 @@ export function loadSampleRoutes(fnAddToMap) {
     if (loadOptions != "all") {
       jsonUrl = "routes/routes_generated_sample.json?v=" + version;
     }
-
+    var centerMap = false;
     try {
       fetch(jsonUrl)
         .then((response) => response.json())
