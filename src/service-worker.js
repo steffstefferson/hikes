@@ -18,7 +18,7 @@ self.addEventListener("install", (event) => {
         "modules/applicationReset.js",
         "modules/mapLayer.js",
         "modules/recordMapLayer.js",
-        "modules/sampleRoutes.js",
+        "modules/sampleRoute.js",
         "modules/serviceWorkerRegister.js",
         "modules/localStorageTracks.js",
         "images/folder.svg",
