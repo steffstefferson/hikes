@@ -52,9 +52,6 @@
                        "Name":  "cadlimo ritom.gpx"
                    },
                    {
-                       "Name":  "cadlimo vrin.gpx"
-                   },
-                   {
                        "Name":  "cavaglia bernina pass.gpx"
                    },
                    {
@@ -251,6 +248,9 @@
                    },
                    {
                        "Name":  "routes_generated_sample.json"
+                   },
+                   {
+                       "Name":  "scaletta vrin.gpx"
                    },
                    {
                        "Name":  "schinigiplatte first.gpx"
