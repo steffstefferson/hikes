@@ -25,14 +25,14 @@
   "display": "standalone",
   "theme_color": "#4CAF50",
   "share_target": {
-    "action": "/_share-target",
+    "action": "share-target",
     "enctype": "multipart/form-data",
     "method": "POST",
     "params": {
       "files": [
         {
           "name": "media",
-          "accept": ["image/*"]
+          "accept": ["text/*", ".gpx", ".kml", ".json", ".geojson", ".txt"]
         }
       ]
     }
