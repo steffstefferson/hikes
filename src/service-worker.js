@@ -94,7 +94,7 @@ registerMapCache("openstreetmap-cache", "b.tile.openstreetmap.org");
 
 registerMapCache("swisstopo-cache", "wmts.geo.admin.ch");
 
-workbox.routing.registerRoute("/_share-target", shareTargetHandler, "POST");
+workbox.routing.registerRoute("/share-target", shareTargetHandler, "POST");
 
 let addMapTilesToCache = false;
 
