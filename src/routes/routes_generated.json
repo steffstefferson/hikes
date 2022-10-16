@@ -64,7 +64,13 @@
                        "Name":  "chasseral.gpx"
                    },
                    {
+                       "Name":  "Cluozza.gpx"
+                   },
+                   {
                        "Name":  "Creux du Van.gpx"
+                   },
+                   {
+                       "Name":  "Diavolezza -Moderatsch.gpx"
                    },
                    {
                        "Name":  "Doldenhornhütte.gpx"
@@ -169,6 +175,9 @@
                        "Name":  "Lauteraarhütte.gpx"
                    },
                    {
+                       "Name":  "Lei de la Tscheppa.gpx"
+                   },
+                   {
                        "Name":  "leutschenachhütte.gpx"
                    },
                    {
@@ -179,6 +188,9 @@
                    },
                    {
                        "Name":  "macun seeenplatte.gpx"
+                   },
+                   {
+                       "Name":  "maloja julierpass.gpx"
                    },
                    {
                        "Name":  "Mattmark.gpx"
@@ -250,6 +262,9 @@
                        "Name":  "routes_generated_sample.json"
                    },
                    {
+                       "Name":  "s-charl ofenpass.gpx"
+                   },
+                   {
                        "Name":  "scaletta vrin.gpx"
                    },
                    {
@@ -293,6 +308,12 @@
                    },
                    {
                        "Name":  "tschierva sac.gpx"
+                   },
+                   {
+                       "Name":  "Twannbachschlucht.gpx"
+                   },
+                   {
+                       "Name":  "val fex.gpx"
                    },
                    {
                        "Name":  "Val minger.gpx"
