@@ -76,6 +76,9 @@
                        "Name":  "chass.gpx"
                    },
                    {
+                       "Name":  "chasseral-nods.gpx"
+                   },
+                   {
                        "Name":  "chasseral.gpx"
                    },
                    {
@@ -130,6 +133,9 @@
                        "Name":  "Flueseeli.gpx"
                    },
                    {
+                       "Name":  "Fründehütte.gpx"
+                   },
+                   {
                        "Name":  "fuorcla da glims.gpx"
                    },
                    {
@@ -161,6 +167,12 @@
                    },
                    {
                        "Name":  "Grand Route Nivolet.gpx"
+                   },
+                   {
+                       "Name":  "Grialetsch.gpx"
+                   },
+                   {
+                       "Name":  "grimsel-loeschental.gpx"
                    },
                    {
                        "Name":  "Grächen Saas Fee.gpx"
@@ -328,6 +340,9 @@
                        "Name":  "routes_generated_sample.json"
                    },
                    {
+                       "Name":  "Räfenhorn_4511675821270464478.gpx"
+                   },
+                   {
                        "Name":  "s-charl ofenpass.gpx"
                    },
                    {
@@ -392,6 +407,9 @@
                    },
                    {
                        "Name":  "Val Veny.gpx"
+                   },
+                   {
+                       "Name":  "valMora.gpx"
                    },
                    {
                        "Name":  "verbierlacduvaux.gpx"
