@@ -46,6 +46,9 @@
                        "Name":  "bedrettohöhenwanderung.gpx"
                    },
                    {
+                       "Name":  "BelapRiederalp.gpx"
+                   },
+                   {
                        "Name":  "blenio cadlimo.gpx"
                    },
                    {
@@ -166,6 +169,9 @@
                        "Name":  "gimmelwald.gpx"
                    },
                    {
+                       "Name":  "Glacier Trail.gpx"
+                   },
+                   {
                        "Name":  "glecksteinhütte.gpx"
                    },
                    {
@@ -175,7 +181,13 @@
                        "Name":  "Grand Route Nivolet.gpx"
                    },
                    {
+                       "Name":  "Grand Tave.gpx"
+                   },
+                   {
                        "Name":  "Grialetsch.gpx"
+                   },
+                   {
+                       "Name":  "Griessee.gpx"
                    },
                    {
                        "Name":  "grimsel-loeschental.gpx"
@@ -218,6 +230,9 @@
                    },
                    {
                        "Name":  "lac de joux.gpx"
+                   },
+                   {
+                       "Name":  "Lac de Louvie.gpx"
                    },
                    {
                        "Name":  "Lago Bianco.gpx"
@@ -277,6 +292,12 @@
                        "Name":  "Mattmark.gpx"
                    },
                    {
+                       "Name":  "mauvoisin.gpx"
+                   },
+                   {
+                       "Name":  "Mischabelhütte.gpx"
+                   },
+                   {
                        "Name":  "moiry.gpx"
                    },
                    {
@@ -304,6 +325,9 @@
                        "Name":  "Oberaarsee.gpx"
                    },
                    {
+                       "Name":  "Oberaletschhütte.gpx"
+                   },
+                   {
                        "Name":  "oberalp cadlimo.gpx"
                    },
                    {
@@ -314,6 +338,12 @@
                    },
                    {
                        "Name":  "Pizol 5 Seen.gpx"
+                   },
+                   {
+                       "Name":  "Plain Morte.gpx"
+                   },
+                   {
+                       "Name":  "planura.gpx"
                    },
                    {
                        "Name":  "pres d orvin.gpx"
@@ -343,6 +373,9 @@
                        "Name":  "Robiei Seen.gpx"
                    },
                    {
+                       "Name":  "Romont.gpx"
+                   },
+                   {
                        "Name":  "routes_generated.json"
                    },
                    {
@@ -355,6 +388,9 @@
                        "Name":  "s-charl ofenpass.gpx"
                    },
                    {
+                       "Name":  "saasAllmagellerHoehenweg.gpx"
+                   },
+                   {
                        "Name":  "Saleina.gpx"
                    },
                    {
@@ -365,6 +401,9 @@
                    },
                    {
                        "Name":  "schinigiplatte first.gpx"
+                   },
+                   {
+                       "Name":  "Schreckhornhüte.gpx"
                    },
                    {
                        "Name":  "schwarzsee jaun.gpx"
@@ -440,6 +479,9 @@
                    },
                    {
                        "Name":  "verbierlacduvaux.gpx"
+                   },
+                   {
+                       "Name":  "Violettes.gpx"
                    },
                    {
                        "Name":  "weissenstein.gpx"
