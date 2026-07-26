@@ -4,6 +4,15 @@ export function checkForNewSampleRoute(fnAddToMap) {
   }
 }
 
+export function initiallyLoadSampleRoutes() {
+  const url = new URL(window.location.href);
+  if (url.searchParams.get("routes") === "default") {
+    url.searchParams.delete("routes");
+    window.history.replaceState({}, "", url);
+    localStorage.setItem("sampleRoutesLoaded", 1);
+  }
+}
+
 export function loadSampleRoutes(fnAddToMap) {
   localStorage.setItem("sampleRoutesLoaded", 1);
   setTimeout(() => {
@@ -29,7 +38,7 @@ export function loadSampleRoutes(fnAddToMap) {
           centerMap = true;
           result.routes.forEach((route) => {
             console.log("add route to map" + route.Name);
-            fnAddToMap("routes/"+route.Name, centerMap);
+            fnAddToMap("routes/" + route.Name, centerMap);
             centerMap = false;
           });
         });

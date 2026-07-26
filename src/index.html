@@ -42,7 +42,7 @@
 <script type="module">
 
 import {initMap,addToMap} from './modules/map.js';
-import {loadSampleRoutes,checkForNewSampleRoute} from './modules/sampleRoute.js';
+import {loadSampleRoutes,checkForNewSampleRoute, initiallyLoadSampleRoutes} from './modules/sampleRoute.js';
 import {initRecordMapLayer} from  './modules/recordMapLayer.js'
 import {resetApplication} from  './modules/applicationReset.js'
 import {initServiceWorker} from  './modules/serviceWorkerRegister.js'
@@ -54,6 +54,7 @@ window.addEventListener("load", function () {
   initMapLayer(map);
   addLoadFunctionality(map,addToMap);
   loadTracksFromLocalStorage();
+  initiallyLoadSampleRoutes();
   checkForNewSampleRoute(addToMap);
 });
 initServiceWorker();
