@@ -29,7 +29,7 @@ export function loadSampleRoutes(fnAddToMap) {
           centerMap = true;
           result.routes.forEach((route) => {
             console.log("add route to map" + route.Name);
-            fnAddToMap(route.Name, centerMap);
+            fnAddToMap("routes/"+route.Name, centerMap);
             centerMap = false;
           });
         });
